@@ -34,14 +34,14 @@ public class MainTest {
 
         String[] header = {"url", "title"};
         String dir = "./Report/" + timestamp;
-        String filepath = dir + "/output_test1.xlsx";
-        ExcelHandler.createExcelReport(filepath, List.of(header));
+        String filename = "output_test1.xlsx";
+        ExcelHandler.createExcelReport(dir, filename, List.of(header));
 
         ArrayList<String> data = new ArrayList<>();
         data.add(url);
         data.add(driver.getTitle());
 
-        ExcelHandler.writeExcel(filepath, data);
+        ExcelHandler.writeExcel(dir + "/" + filename, data);
         driver.quit();
     }
 
