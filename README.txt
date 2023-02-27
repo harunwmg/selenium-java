@@ -1,1 +1,1 @@
-This is saple code for selenium-java-gradle
+This is sample code for selenium-java-gradle
