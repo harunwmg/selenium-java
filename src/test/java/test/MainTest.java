@@ -48,8 +48,8 @@ public class MainTest {
     @DataProvider (name = "excel")
     public Object[][] readExcel() {
         String[][] returnVal = new String[2][1];
-        returnVal[0][1] = "https://tompetty.com";
-        returnVal[1][1] = "https://dualipa.com";
+        returnVal[0][0] = "https://tompetty.com";
+        returnVal[1][0] = "https://dualipa.com";
         /*try {
             FileInputStream file = new FileInputStream(new File("howtodoinjava_demo.xlsx"));
             XSSFWorkbook workbook = new XSSFWorkbook(file);
