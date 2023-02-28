@@ -61,7 +61,7 @@ public class MainTest {
     public void setSelenideConfig() {
         Configuration.browser = Config.browser;
         Configuration.remote = Config.remote;
-        Configuration.pageLoadTimeout = Config.pageLoadTimeout;
+        Configuration.pageLoadTimeout = Config.pageLoadTimeout * 1000;
     }
 
     public void waitForPageLoad(WebDriver driver) {
