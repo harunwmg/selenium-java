@@ -8,7 +8,7 @@ public class Config {
     public static int parallelCount = Integer.parseInt(getProperty("parallelCount", "2"));
     public static String browser = getProperty("browser", "chrome");
     public static String remote = getProperty("remote", null);
-    public static long pageLoadTimeout = Long.parseLong(getProperty("pageLoadTimeout", "60"));
+    public static long pageLoadTimeout = Long.parseLong(getProperty("pageLoadTimeout", "120"));
 
     private static String getProperty(String key, String def) {
         if (properties == null) properties = loadSystemProperties();
