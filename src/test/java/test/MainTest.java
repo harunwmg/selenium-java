@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestContext;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import util.Config;
 import util.ExcelHandler;
 
 import java.text.SimpleDateFormat;
@@ -40,8 +41,7 @@ public class MainTest {
     @DataProvider (name = "excel", parallel = true)
     public Object[][] excelData(ITestContext context) {
 
-        int parallelCount = Integer.parseInt(System.getProperty("parallelCount", "2"));
-        context.getCurrentXmlTest().getSuite().setDataProviderThreadCount(parallelCount);
+        context.getCurrentXmlTest().getSuite().setDataProviderThreadCount(Config.parallelCount);
 
         String inputExcel = System.getProperty("input", null);
         if (inputExcel==null) {
@@ -53,8 +53,15 @@ public class MainTest {
     }
 
     public WebDriver getDriver(String url) {
+        setSelenideConfig();
         Selenide.open(url);
         return WebDriverRunner.getWebDriver();
+    }
+
+    public void setSelenideConfig() {
+        Configuration.browser = Config.browser;
+        Configuration.remote = Config.remote;
+        Configuration.pageLoadTimeout = Config.pageLoadTimeout;
     }
 
     public void waitForPageLoad(WebDriver driver) {
