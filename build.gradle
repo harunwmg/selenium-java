@@ -36,6 +36,6 @@ dependencies {
 
 test {
     useTestNG() {
-        suites '.src/test/java/testng.xml'
+        suites 'src/testng.xml'
     }
 }
