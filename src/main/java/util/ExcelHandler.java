@@ -1,5 +1,7 @@
 package util;
 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.usermodel.XSSFCell;
@@ -20,9 +22,7 @@ public class ExcelHandler {
 
             File dirFile = new File(dir);
             if (!dirFile.exists()) {
-                if(dirFile.mkdirs()) {
-                    throw new RuntimeException("unable to create dir " + dir);
-                }
+                dirFile.mkdirs();
             }
 
             XSSFWorkbook workbook = new XSSFWorkbook();
@@ -64,6 +64,33 @@ public class ExcelHandler {
             out.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public static synchronized String[][] readExcel(String filepath) {
+        String[][] returnVal = new String[0][];
+        try {
+            FileInputStream file = new FileInputStream(filepath);
+            XSSFWorkbook workbook = new XSSFWorkbook(file);
+            XSSFSheet sheet = workbook.getSheetAt(0);
+            int rowCount = sheet.getLastRowNum();
+            int columnCount = sheet.getRow(0).getLastCellNum();
+            returnVal = new String[rowCount][columnCount];
+
+            for(int i=0; i<rowCount; i++) {
+                Row row = sheet.getRow(i);
+                for(int j=0; j<columnCount; j++) {
+                    Cell cell = row.getCell(j);
+                    returnVal[i][j] = cell.getStringCellValue();
+                }
+            }
+
+            file.close();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            return returnVal;
         }
     }
 }
