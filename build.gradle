@@ -37,6 +37,7 @@ dependencies {
 test {
     systemProperties = System.getProperties()
     useTestNG() {
+        useDefaultListeners = true
         suites 'src/testng.xml'
     }
 }
